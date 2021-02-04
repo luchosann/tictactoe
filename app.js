@@ -1,11 +1,11 @@
 window.onload = function(){
-    cargarpag()
+    loadgame()
 }
 
 
 
 
-function  cargarpag() {
+function  loadgame() {
     var game = document.getElementById('game');
     var win = document.getElementById('win');
     const save = game.innerHTML;
@@ -34,7 +34,7 @@ function  cargarpag() {
     var c8 = document.getElementById('c8');
     var c9 = document.getElementById('c9');
 
-    
+    var points = 0;
     var n;
     var i=1;
 
@@ -42,10 +42,12 @@ function  cargarpag() {
 
         if (i <= 1) {
             n.innerHTML = 'X';
+            points++;
             i++;
         } else {
             n.innerHTML = 'O';
             i--;
+            points++;
         }
 
 
@@ -112,6 +114,8 @@ function  cargarpag() {
         c7,c8,c9
     ];
 
+    
+
     function selectWinner(tateti) {
 
         
@@ -122,7 +126,7 @@ function  cargarpag() {
  for (let f = 0; f < 8; f++) {
         if ( lineX[0] === tateti[f][0].innerHTML && lineX[1] === tateti[f][1].innerHTML && lineX[2] === tateti[f][2].innerHTML){
             win.innerHTML += "<h1 class='winner'>Player 1 wins</h1>";
-            
+
             for( let j = 0; j < 9; j++){
                 if(tablero[j].innerHTML ==='X' || tablero[j].innerHTML ==='O'){
                 } else {
@@ -142,6 +146,9 @@ function  cargarpag() {
         }
  }
   
+ if (points === 9) {
+    win.innerHTML += "<h1 class='winner'>Tie</h1>";
+ }
 
 };
 
@@ -150,7 +157,8 @@ var resett = document.getElementById('reset');
     resett.onclick = function() {
         game.innerHTML = save;
         win.innerHTML = '';
-        cargarpag();
+        points = 0;
+        loadgame();
     };
 }
 
