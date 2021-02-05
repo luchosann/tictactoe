@@ -271,7 +271,7 @@ main {
 
   footer {
     position: fixed;
-    bottom: 35%;
+    top: 500px;
   }
 
 @media (min-width: 1024px) {
